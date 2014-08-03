@@ -54,8 +54,8 @@ use Marcegarba\FuncColl\Collection;
 
 $sum = Collection::fromArray(range(1, 10))
     ->filter(function ($elem) { return $elem % 2 != 0; })
-    ->map(function ($elem) { return $elem * 2; })
     ->take(3)
+    ->map(function ($elem) { return $elem * 2; })
     ->reduce(function ($acc, $num) { return $acc + $num; });
 
 echo $sum; // Outputs 18
