@@ -82,7 +82,7 @@ class Collection implements ArrayAccess, Countable
      *         function () use ($stmt) {
      *             return $stmt->fetch(PDO::FETCH_ASOC);
      *         }
-     *      )->map(function ($row) { return new Items($row); });
+     *      )->map(function ($row) { return new Item($row); });
      * </pre>
      * </p>
      *
@@ -206,6 +206,11 @@ class Collection implements ArrayAccess, Countable
         throw new LogicException('Collection object is immutable');
     }
 
+    /**
+     * Returns the number of elements in the collection.
+     *
+     * @return int
+     */
     public function count()
     {
         return count($this->arr);
