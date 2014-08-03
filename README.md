@@ -46,7 +46,7 @@ Here are a couple of simple examples, using the two factory methods.
 ### Example 1: adding odd numbers times two
 
 A list of consecutive numbers, from 1 to 10, is used to generate the first object;
-successive transformations then are applied, so as to obtain the sume of the double
+successive transformations then are applied, so as to obtain the sum of the double
 of those odd numbers.
 
 ```php
