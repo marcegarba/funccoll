@@ -30,8 +30,7 @@ and therefore not making the class immutable.
 Being immutable, the ```offsetSet()``` and ```offsetUnset()``` implementation of the
 ```ArrayAccess``` interface throws a ```LogicException```.
 
-The immutability has to do with the collection itself, not about the elements of the
-collection (as that could not be guaranteed in PHP).
+The immutability has to do with the collection itself, not about the state of its elements.
 
 ### Extracting the array
 
@@ -63,8 +62,8 @@ echo $sum; // Outputs 50
 
 ### Example 2: extracting the rows from a PDO query
 
-This methods uses the result of a PDO query to generate a list of associative
-arrays (with a limit of 10), each of which is then used to create an
+This example uses the result of a PDO query to generate a list of associative
+arrays (with a maximum of 100 elements), each of which is then used to create an
 entity object, based on that row contents, and the resulting array of
 entity objects are stored in a variable.
 
@@ -75,10 +74,12 @@ $pdo = new PDO(...);
 
 $stmt = $pdo->query('SELECT * from items');
 
-$items = Collection::generate(
-    function () use ($stmt) {
-        return $stmt->fetch(PDO_ASSOC);
-    }, 10)
+$generator = function () use ($stmt) {
+    return $stmt->fetch(PDO_ASSOC);
+}
+
+$items =
+    Collection::generate($generator, 100)
     ->map(function ($row) { return new Item($row); });
 
 ```
