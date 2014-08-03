@@ -1,6 +1,6 @@
 <?php
 
-namespace Marcegarba\FuncCall;
+namespace Marcegarba\FuncColl;
 
 use ArrayAccess;
 use Countable;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Marcegarba\FuncCall;
+namespace Marcegarba\FuncColl;
 
 use stdClass;
 use LogicException;
@@ -79,8 +79,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 		$this->assertNotNull($col);
 		$this->assertTrue($col instanceof Collection);
 		$this->assertCount(6, $col);
-		for ($i = 0; $i < count($this->sources); $i++) {
-			$this->assertEquals($this->sources[$i] * 3, $col[$i]);
+		for ($i = 0; $i < count($this->source); $i++) {
+			$this->assertEquals($this->source[$i] * 3, $col[$i]);
 		}
 	}
 
@@ -104,8 +104,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
 	public function testOffsetGet()
 	{
-		for ($i = 0; $i < count($this->sources); $i++) {
-			$this->assertEquals($this->sources[$i], $this->object[$i]);
+		for ($i = 0; $i < count($this->source); $i++) {
+			$this->assertEquals($this->source[$i], $this->object[$i]);
 		}
 	}
 
