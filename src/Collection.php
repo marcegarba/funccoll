@@ -172,6 +172,34 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
+     * Returns the number of elements in the collection.
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->arr);
+    }
+
+    /**
+     * Generates a new collection with only the first <i>$length</i>
+     * elements in it (if <i>$length</i> is positive or zero), or
+     * the first element minus the last (abs(<i>$length</i>)), if
+     * negative.
+     * <p>
+     * This uses the <code>array_slice()</code> PHP built-in function.
+     * </p>
+     *
+     * @param  int          $length   the length to take
+     * @return Collection
+     */
+    public function take($length)
+    {
+        $dest = array_slice($this->arr, 0, (int) $length);
+        return new Collection($dest);
+    }
+
+    /**
      * Creates the object.
      *
      * @param array $arr [optional] the initial array; default: []
@@ -204,16 +232,6 @@ class Collection implements ArrayAccess, Countable
     public function offsetUnset($offset)
     {
         throw new LogicException('Collection object is immutable');
-    }
-
-    /**
-     * Returns the number of elements in the collection.
-     *
-     * @return int
-     */
-    public function count()
-    {
-        return count($this->arr);
     }
 
 }

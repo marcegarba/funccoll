@@ -47,7 +47,7 @@ Here are a couple of simple examples, using the two factory methods.
 
 A list of consecutive numbers, from 1 to 10, is used to generate the first object;
 successive transformations then are applied, so as to obtain the sum of the double
-of those odd numbers.
+of the first three odd numbers.
 
 ```php
 use Marcegarba\FuncColl\Collection;
@@ -55,9 +55,10 @@ use Marcegarba\FuncColl\Collection;
 $sum = Collection::fromArray(range(1, 10))
     ->filter(function ($elem) { return $elem % 2 != 0; })
     ->map(function ($elem) { return $elem * 2; })
-    ->reduce(function ($a, $b) { return $a + $b; });
+    ->take(3)
+    ->reduce(function ($acc, $num) { return $acc + $num; });
 
-echo $sum; // Outputs 50
+echo $sum; // Outputs 18
 ```
 
 ### Example 2: extracting the rows from a PDO query

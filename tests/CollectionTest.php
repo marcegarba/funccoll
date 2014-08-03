@@ -98,6 +98,40 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
                 }, 1));
     }
 
+    public function testCount()
+    {
+        $arr = $this->object->toArray();
+        $this->assertEquals(count($arr), count($this->object));
+    }
+
+    public function testTakeWithPositiveArgument()
+    {
+        $col = $this->object->take(3);
+        $this->assertNotSame($this->object, $col);
+        $this->assertCount(3, $col);
+        for ($i = 0; $i < 3; $i++) {
+            $this->assertEquals($this->source[$i], $col[$i]);
+        }
+    }
+
+    public function testTakeWithZeroArgument()
+    {
+        $col = $this->object->take(0);
+        $this->assertNotSame($this->object, $col);
+        $this->assertCount(0, $col);
+    }
+
+    public function testTakeWithNegativeArgument()
+    {
+        $col = $this->object->take(-2);
+        $this->assertNotSame($this->object, $col);
+        $newCount= count($this->source) - 2;
+        $this->assertCount($newCount, $col);
+        for ($i = 0; $i < $newCount; $i++) {
+            $this->assertEquals($this->source[$i], $col[$i]);
+        }
+    }
+
     public function testOffsetExists()
     {
         $this->assertTrue(isset($this->object[3]));
