@@ -23,7 +23,7 @@ Each transformation creates a new collection object.
 
 The class itself implements ```ArrayAccess``` and ```Countable```, so that it somehow
 can be used as an array; but it doesn't implement Iterator (for traversing the collection
-by using the ``foreach```language construct), because that would imply having a counter
+by using the `foreach` language construct), because that would imply having a counter
 and therefore not making the class immutable.
 
 Being immutable, the ```offsetSet()``` and ```offsetUnset()``` implementation of the
@@ -53,7 +53,7 @@ of those odd numbers.
 use Marcegarba\FuncColl\Collection;
 
 $sum = Collection::fromArray(range(1, 10))
-    ->filter(function ($elem) { return $elem %2 != 0; })
+    ->filter(function ($elem) { return $elem % 2 != 0; })
     ->map(function ($elem) { return $elem * 2; })
     ->reduce(function ($a, $b) { return $a + $b; });
 
