@@ -200,6 +200,28 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
+     * Generates a new collection with a flattened list of elements.
+     * <p>
+     * This uses the <code>array_walk_recursive()</code> PHP built-in
+     * function, and implements an idea taken from
+     * <a href="http://stackoverflow.com/questions/1319903/how-to-flatten-a-multidimensional-array">
+     * Stack Overflow
+     * </a>
+     * </p>
+     *
+     * @return Collection
+     */
+    public function flatten()
+    {
+        $dest = [];
+        $array = $this->arr;
+        array_walk_recursive($array, function($elem) use (&$dest) {
+            $dest[] = $elem;
+        });
+        return new Collection($dest);
+    }
+
+    /**
      * Creates the object.
      *
      * @param array $arr [optional] the initial array; default: []

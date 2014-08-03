@@ -132,6 +132,25 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testFlatten()
+    {
+        $source = [
+            ['a', 'b'],
+            'c', 'd',
+            ['e', ['f', 'g', ['h']]]
+        ];
+        $dest = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'
+        ];
+        $col1 = Collection::fromArray($source);
+        $col2 = $col1->flatten();
+        $this->assertNotSame($col1, $col2);
+        $this->assertTrue($col2 instanceof Collection);
+        $this->assertEquals($dest, $col2->toArray());
+        // check that the array wasn't changed
+        $this->assertEquals($source, $col1->toArray());
+    }
+
     public function testOffsetExists()
     {
         $this->assertTrue(isset($this->object[3]));
