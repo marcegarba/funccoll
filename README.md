@@ -5,7 +5,7 @@ This little library was inspired by Martin Fowler's [collection pipeline](http:/
 but implemented in PHP.
 
 The beauty in the Ruby and Clojure examples in the article contrast with PHP's clunky syntax for lambdas (closures); nevertheless, my intention is making it easy to
-create collection pipelines in PHP.there
+create collection pipelines in PHP.
 
 ## How it works
 
