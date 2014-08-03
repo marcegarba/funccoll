@@ -67,6 +67,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function testFilter()
     {
         $col = $this->object->filter(function ($elem) { return $elem % 2 == 0;});
+        $this->assertNotSame($this->object, $col);
         $this->assertTrue(count($col) == 3);
         $this->assertEquals(2, $col[1]);
         $this->assertEquals(4, $col[3]);
@@ -77,6 +78,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         $col = $this->object->map(function ($elem) { return $elem * 3; });
         $this->assertNotNull($col);
+        $this->assertNotSame($this->object, $col);
         $this->assertTrue($col instanceof Collection);
         $this->assertCount(6, $col);
         for ($i = 0; $i < count($this->source); $i++) {
