@@ -15,7 +15,7 @@ The class has two static factory methods, ```fromArray()``` and ```generate()```
 
 The former creates a Collection object by passing a PHP array.
 
-The latter uses a closure to generate the colleciton elements.
+The latter uses a closure to generate the collection elements.
 
 ### Immutability
 
