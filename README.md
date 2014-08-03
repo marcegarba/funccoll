@@ -2,7 +2,7 @@
 [![Build Status](https://secure.travis-ci.org/marcegarba/funccoll.png?branch=master)](https://travis-ci.org/marcegarba/funccoll)
 
 This little library was inspired by Martin Fowler's [collection pipeline](http://martinfowler.com/articles/collection-pipeline/) pattern,
-but implemented in PHP.
+implemented in PHP.
 
 The beauty in the Ruby and Clojure examples in the article contrast with PHP's clunky syntax for lambdas (closures); nevertheless, my intention is making it easy to
 create collection pipelines in PHP.
