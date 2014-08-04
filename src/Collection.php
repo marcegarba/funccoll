@@ -203,12 +203,11 @@ class Collection implements ArrayAccess, Countable
      * Generates a new collection with a flattened list of elements.
      * <p>
      * This uses the <code>array_walk_recursive()</code> PHP built-in
-     * function, and implements an idea taken from
-     * <a href="http://stackoverflow.com/questions/1319903/how-to-flatten-a-multidimensional-array">
-     * Stack Overflow
-     * </a>
+     * function, and implements an idea taken from Stack Overflow
+     * (see link below)
      * </p>
      *
+     * @see http://stackoverflow.com/a/1320156
      * @return Collection
      */
     public function flatten()
