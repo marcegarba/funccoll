@@ -1,6 +1,7 @@
 # PHP functional collection
 [![Build Status](https://secure.travis-ci.org/marcegarba/funccoll.png?branch=master)](https://travis-ci.org/marcegarba/funccoll)
 [![License](https://poser.pugx.org/marcegarba/funccoll/license.svg)](https://packagist.org/packages/marcegarba/funccoll)
+[![Coverage Status](https://coveralls.io/repos/marcegarba/funccoll/badge.png)](https://coveralls.io/r/marcegarba/funccoll)
 
 This little library was inspired by Martin Fowler's [collection pipeline](http://martinfowler.com/articles/collection-pipeline/) pattern,
 with the intent of implementing that pattern in PHP.

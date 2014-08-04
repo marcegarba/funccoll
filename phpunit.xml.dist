@@ -16,6 +16,7 @@
     </testsuites>
     <logging>
         <log type="junit" target="target/logs/phpunit.xml" />
+        <log type="coverage-clover" target="target/logs/clover.xml"/>
     </logging>
 </phpunit>
 
