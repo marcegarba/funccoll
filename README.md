@@ -1,13 +1,26 @@
 # PHP functional collection
 [![Build Status](https://secure.travis-ci.org/marcegarba/funccoll.png?branch=master)](https://travis-ci.org/marcegarba/funccoll)
-[![License](https://poser.pugx.org/marcegarba/funccoll/license.svg)](https://packagist.org/packages/marcegarba/funccoll)
 [![Coverage Status](https://coveralls.io/repos/marcegarba/funccoll/badge.png)](https://coveralls.io/r/marcegarba/funccoll)
+&nbsp;&nbsp;&nbsp;
+[![License](https://poser.pugx.org/marcegarba/funccoll/license.svg)](https://packagist.org/packages/marcegarba/funccoll)
 
 This little library was inspired by Martin Fowler's [collection pipeline](http://martinfowler.com/articles/collection-pipeline/) pattern,
 with the intent of implementing that pattern in PHP.
 
 The beauty in the Ruby and Clojure examples in the article contrast with PHP's clunky syntax for lambdas (closures); nevertheless, my intention is making it easy to
 create collection pipelines in PHP.
+
+## Installation
+
+You can get this PHP library via a [composer](https://getcomposer.org) package in [Packagist](https://packagist.org).
+Just add this dependency to your `composer.json`:
+
+```json
+    "require": {
+        "marcegarba/funccoll": "dev-master"
+    }
+
+```
 
 ## How it works
 
