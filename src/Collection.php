@@ -221,6 +221,29 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
+     * Sorts the collection elements according to a closure, and
+     * return a new collection with the sorted elements.
+     * <p>
+     * The closure is passed two arguments, and it must return an
+     * integer, where -1 indicates that the first argument goes
+     * before the second one, 0 if they are equal, or +1 if the
+     * second element goes before the first one.
+     * </p>
+     * <p>
+     * This uses the <code>usort()</code> PHP built-in function.
+     * </p>
+     *
+     * @param  Closure $callback   the closure to map each element
+     * @return Collection          the transformed collection
+     */
+    public function sort(Closure $callback)
+    {
+        $arr = $this->arr;
+        usort($arr, $callback);
+        return new Collection($arr);
+    }
+
+    /**
      * Creates the object.
      *
      * @param array $arr [optional] the initial array; default: []

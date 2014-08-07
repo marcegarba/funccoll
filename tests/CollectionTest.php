@@ -151,6 +151,19 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($source, $col1->toArray());
     }
 
+    public function testSort()
+    {
+        $bigToSmall = function ($a, $b) {
+            return ($a > $b) ? -1 : 1;
+        };
+        $col1 = $this->object->sort($bigToSmall);
+        $this->assertNotNull($col1);
+        $this->assertTrue($col1 instanceof Collection);
+        $this->assertNotSame($this->object, $col1);
+        $this->assertEquals($this->source, $this->object->toArray());
+        $this->assertEquals([6, 5, 4, 3, 2, 1], $col1->toArray());
+    }
+
     public function testOffsetExists()
     {
         $this->assertTrue(isset($this->object[3]));
