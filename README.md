@@ -1,7 +1,8 @@
 # PHP functional collection
 [![Build Status](https://secure.travis-ci.org/marcegarba/funccoll.png?branch=master)](https://travis-ci.org/marcegarba/funccoll)
 [![Coverage Status](https://coveralls.io/repos/marcegarba/funccoll/badge.png)](https://coveralls.io/r/marcegarba/funccoll)
-&nbsp;&nbsp;&nbsp;
+[![Stable](https://poser.pugx.org/marcegarba/funccoll/v/stable.svg)](https://packagist.org/packages/marcegarba/funccoll)
+&nbsp;&nbsp;&nbsp;&nbsp;
 [![License](https://poser.pugx.org/marcegarba/funccoll/license.svg)](https://packagist.org/packages/marcegarba/funccoll)
 
 This little library was inspired by Martin Fowler's [collection pipeline](http://martinfowler.com/articles/collection-pipeline/) pattern,
@@ -16,10 +17,11 @@ You can get this PHP library via a [composer](https://getcomposer.org) package i
 Just add this dependency to your `composer.json`:
 
 ```json
+{
     "require": {
         "marcegarba/funccoll": "dev-master"
     }
-
+}
 ```
 
 ## How it works
