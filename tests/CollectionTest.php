@@ -46,6 +46,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             } else {
                 $result = false;
             }
+
             return $result;
         };
         reset($obj->arr);
@@ -206,7 +207,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * Validates that method chaining works.
      */
-    public function testMethodChains() {
+    public function testMethodChains()
+    {
         $sumDouble = Collection::fromArray($this->source)
                 ->filter(function ($x) { return $x % 2 == 0; })
                 ->map(function ($x) { return $x + 7; })

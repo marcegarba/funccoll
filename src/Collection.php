@@ -54,8 +54,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Initializes a collection from an array.
      *
-     * @param  array       $arr the array to form the collection from
-     * @return Collection  the new collection
+     * @param  array      $arr the array to form the collection from
+     * @return Collection the new collection
      */
     public static function fromArray(array $arr = [])
     {
@@ -86,10 +86,10 @@ class Collection implements ArrayAccess, Countable
      * </pre>
      * </p>
      *
-     * @param   Closure $generator  the generator closure
-     * @param   int     $maxItems   [optional] the max amount of items the
-     *                              collection will have; default = 1000
-     * @return  Collection          the new collection with the generated
+     * @param  Closure    $generator the generator closure
+     * @param  int        $maxItems  [optional] the max amount of items the
+     *                               collection will have; default = 1000
+     * @return Collection the new collection with the generated
      *                              values
      */
     public static function generate(Closure $generator, $maxItems = 1000)
@@ -102,6 +102,7 @@ class Collection implements ArrayAccess, Countable
             }
             $arr[] = $val;
         }
+
         return new Collection($arr);
     }
 
@@ -126,14 +127,15 @@ class Collection implements ArrayAccess, Countable
      * (supporting the new collection)  are <b>not</b> rewritten.
      * </p>
      *
-     * @param Closure $callback
-     * @return Collection  the collection with all elemens for whose
-     *                     application of <i>$callback</i> returned
-     *                     <code>true</code>
+     * @param  Closure    $callback
+     * @return Collection the collection with all elemens for whose
+     *                             application of <i>$callback</i> returned
+     *                             <code>true</code>
      */
     public function filter(Closure $callback)
     {
         $dest = array_filter($this->arr, $callback);
+
         return new Collection($dest);
     }
 
@@ -144,12 +146,13 @@ class Collection implements ArrayAccess, Countable
      * This uses the <code>array_map()</code> PHP built-in function.
      * </p>
      *
-     * @param Closure $callback   the closure to map each element
-     * @return Collection         the transformed collection
+     * @param  Closure    $callback the closure to map each element
+     * @return Collection the transformed collection
      */
     public function map(Closure $callback)
     {
         $dest = array_map($callback, $this->arr);
+
         return new Collection($dest);
     }
 
@@ -160,10 +163,10 @@ class Collection implements ArrayAccess, Countable
      * This uses the <code>array_reduce()</code> PHP built-in function.
      * </p>
      *
-     * @param  Closure $callback  the two-parameters closure to apply
-     *                            to successive elements until a final
-     *                            result is obtained
-     * @param  mixed   $initial   [optional] the initial value; default: null
+     * @param  Closure $callback the two-parameters closure to apply
+     *                           to successive elements until a final
+     *                           result is obtained
+     * @param  mixed   $initial  [optional] the initial value; default: null
      * @return mixed
      */
     public function reduce(Closure $callback, $initial = null)
@@ -190,12 +193,13 @@ class Collection implements ArrayAccess, Countable
      * This uses the <code>array_slice()</code> PHP built-in function.
      * </p>
      *
-     * @param  int          $length   the length to take
+     * @param  int        $length the length to take
      * @return Collection
      */
     public function take($length)
     {
         $dest = array_slice($this->arr, 0, (int) $length);
+
         return new Collection($dest);
     }
 
@@ -214,9 +218,10 @@ class Collection implements ArrayAccess, Countable
     {
         $dest = [];
         $array = $this->arr;
-        array_walk_recursive($array, function($elem) use (&$dest) {
+        array_walk_recursive($array, function ($elem) use (&$dest) {
             $dest[] = $elem;
         });
+
         return new Collection($dest);
     }
 
@@ -233,13 +238,14 @@ class Collection implements ArrayAccess, Countable
      * This uses the <code>usort()</code> PHP built-in function.
      * </p>
      *
-     * @param  Closure $callback   the closure to map each element
-     * @return Collection          the transformed collection
+     * @param  Closure    $callback the closure to map each element
+     * @return Collection the transformed collection
      */
     public function sort(Closure $callback)
     {
         $arr = $this->arr;
         usort($arr, $callback);
+
         return new Collection($arr);
     }
 
@@ -265,6 +271,7 @@ class Collection implements ArrayAccess, Countable
         } else {
             $result = null;
         }
+
         return $result;
     }
 
