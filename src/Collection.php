@@ -238,7 +238,7 @@ class Collection implements ArrayAccess, Countable
      * This uses the <code>usort()</code> PHP built-in function.
      * </p>
      *
-     * @param  Closure    $callback the closure to map each element
+     * @param  Closure    $callback the closure to sort elements
      * @return Collection the transformed collection
      */
     public function sort(Closure $callback)
@@ -247,6 +247,63 @@ class Collection implements ArrayAccess, Countable
         usort($arr, $callback);
 
         return new Collection($arr);
+    }
+
+    /**
+     * Returns the first element in the collection where the closure
+     * returns <code>true</code>.
+     * <p>
+     * The closure is passed as an argument each of the elements of
+     * the collection, until the result is <code>true</code>.
+     * </p>
+     * <p>
+     * If no element in the collection fulfills the condition, then
+     * <code>null</code> is returned.
+     * </p>
+     *
+     * @param  Closure $callback the closure to evaluate elements
+     * @return mixed   the found element, or <code>null</code>
+     */
+    public function findFirst(Closure $callback)
+    {
+        $ret = null;
+        foreach ($this->arr as $elem) {
+            if ($callback($elem)) {
+                $ret = $elem;
+                break;
+            }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Returns the first element of the collection, or <code>null</code>
+     * if the collection is empty.
+     *
+     * @return mixed the first element, or <code>null</code> if the collection is empty
+     */
+    public function head()
+    {
+        if (count($this->arr)) {
+            return $this->arr[0];
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Returns a collection with all the elements but the first.
+     * <p>
+     * If the collection has zero or one element, then an empty collection
+     * is returned.
+     * </p>
+     *
+     * @return Collection
+     */
+    public function tail()
+    {
+        return new Collection(array_slice($this->arr, 1));
     }
 
     /**
