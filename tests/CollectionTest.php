@@ -187,6 +187,22 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($col2, Collection::fromArray(['x'])->tail());
     }
 
+    public function testValues()
+    {
+        $col1 = $this->object->filter(function ($elem) { return $elem > 2; });
+        $this->assertEquals(3, $col1[2]);
+        $this->assertEquals(4, $col1[3]);
+        $this->assertEquals(5, $col1[4]);
+        $this->assertEquals(6, $col1[5]);
+        $col2 = $col1->values();
+        $this->assertEquals(3, $col2[0]);
+        $this->assertEquals(4, $col2[1]);
+        $this->assertEquals(5, $col2[2]);
+        $this->assertEquals(6, $col2[3]);
+        $col3 = Collection::fromArray([])->values();
+        $this->assertCount(0, $col3);
+    }
+
     public function testOffsetExists()
     {
         $this->assertTrue(isset($this->object[3]));

@@ -307,6 +307,20 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
+     * Returns a collection with all the elements in this collection,
+     * but with regenerated numeric indexes.
+     * <p>
+     * This uses the <code>array_values()</code> PHP built-in function.
+     * </p>
+     *
+     * @return Collection
+     */
+    public function values()
+    {
+        return new Collection(array_values($this->arr));
+    }
+
+    /**
      * Creates the object.
      *
      * @param array $arr [optional] the initial array; default: []
