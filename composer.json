@@ -19,8 +19,8 @@
         "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "classmap": [
-            "src/"
-        ]
+        "psr-4": {
+            "Marcegarba\\FuncColl\\": "src"
+        }
     }
 }
