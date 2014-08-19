@@ -203,6 +203,22 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, $col3);
     }
 
+    public function testEach()
+    {
+        $str = '';
+        $fn = function ($elem) use (&$str) {
+            $str .= chr(96 + $elem);
+        };
+        $this->object->each($fn);
+        $this->assertEquals('abcdef', $str);
+        $str2 = '';
+        $fn2 = function ($_, $key) use (&$str2) {
+            $str2 .= chr(97 + $key);
+        };
+        $this->object->each($fn2);
+        $this->assertEquals('abcdef', $str2);
+    }
+
     public function testOffsetExists()
     {
         $this->assertTrue(isset($this->object[3]));

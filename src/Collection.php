@@ -321,6 +321,25 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
+     * Runs a closure on each element in the collection, without generating
+     * another collection.
+     * <p>
+     * The closure can have one or two arguments, the first being the value
+     * and the second the key/index.
+     * </p>
+     * <p>
+     * This uses the <code>array_walk()</code> PHP built-in function.
+     * </p>
+     *
+     * @return void
+     */
+    public function each(Closure $callback)
+    {
+        $array = $this->arr;
+        array_walk($array, $callback);
+    }
+
+    /**
      * Creates the object.
      *
      * @param array $arr [optional] the initial array; default: []
