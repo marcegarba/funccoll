@@ -39,14 +39,14 @@ The latter uses a closure to generate the collection elements.
 Each transformation creates a new collection object.
 
 The class itself implements ```ArrayAccess``` and ```Countable```, so that it somehow
-can be used as an array; but it doesn't implement Iterator (for traversing the collection
+can be used as an array; but it doesn't implement ```Iterator``` (for traversing the collection
 by using the `foreach` language construct), because that would imply having a counter
-and therefore not making the class immutable.
+and therefore making the class instances mutable.
 
-Being immutable, the ```offsetSet()``` and ```offsetUnset()``` implementation of the
+Being immutable, the implementation of ```offsetSet()``` and ```offsetUnset()``` of the
 ```ArrayAccess``` interface throws a ```LogicException```.
 
-The immutability has to do with the collection itself, not about the state of its elements.
+Obviously, the immutability has to do with the collection itself, not the state of its elements.
 
 ### Extracting the array
 
@@ -100,3 +100,24 @@ $items =
     ->map(function ($row) { return new Item($row); });
 
 ```
+
+## Summary of methods
+
+These are the main instance methods, sorted alphabetically:
+
+|Method       |Meaning                                              |
+|-------------|-----------------------------------------------------|
+|`count()`    |Returns a count of all elements in the collection    |
+|`each()`     |Executes a closure for each element                  |
+|`filter()`   |Filters a collection                                 |
+|`findFirst()`|Returns the first element that matches a condition   |
+|`flatten()`  |Creates a new collection containing a flattened list |
+|`groupBy()`  |Groups elements according to a closure               |
+|`head()`     |Returns the first element                            |
+|`map()`      |Creates a new collection with elements mapped        |
+|`reduce()`   |Reduces a collection to a single value               |
+|`sort()`     |Creates a sorted collection applying a closure       |
+|`tail()`     |Creates a collection with all but the first element  |
+|`take()`     |Creates a collection with the first _n_ elements     |
+|`toArray()`  |Returns copy of the Collection's inner array         |
+|`values()`   |Creates a new collection with the keys wiped         |

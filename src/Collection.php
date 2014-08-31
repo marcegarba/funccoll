@@ -331,12 +331,36 @@ class Collection implements ArrayAccess, Countable
      * This uses the <code>array_walk()</code> PHP built-in function.
      * </p>
      *
+     * @param  Closure $callback the closure to evaluate on each element
      * @return void
      */
     public function each(Closure $callback)
     {
         $array = $this->arr;
         array_walk($array, $callback);
+    }
+
+    /**
+     * Runs a closure on each element in the collection, and returns
+     * a map where the key is the result of the closure applied to each
+     * element and the value is an array/hash with all the elements that
+     * match that calculated key.
+     * <p>
+     * The key of each element in the array is preserved.
+     * </p>
+     *
+     * @param  Closure    $callback the closure to generate the key from
+     *                              each element
+     * @return Collection
+     */
+    public function groupBy(Closure $callback)
+    {
+        $grouped = [];
+        foreach ($this->arr as $key => $elem) {
+            $grouped[$callback($elem)][$key] = $elem;
+        }
+
+        return new Collection($grouped);
     }
 
     /**

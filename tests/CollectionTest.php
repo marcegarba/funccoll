@@ -219,6 +219,29 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('abcdef', $str2);
     }
 
+    public function testGroupBy()
+    {
+        $groupBy1 = $this->object->groupBy(function ($elem) {return $elem % 2 == 0 ? 'even' : 'odd';});
+        $this->assertNotSame($this->object, $group1);
+        $result1 = [
+            'even' => [1 => 2, 3=> 4, 5=> 6],
+            'odd' => [0 => 1, 2 => 3, 4 => 5]
+        ];
+        $this->assertEquals($result1, $groupBy1->toArray());
+        $arr2 = [
+            'x' => [17, 54],
+            'y' => [42, -4],
+            'z' => [1, 45]
+        ];
+        $groupBy2 = Collection::fromArray($arr2)
+                ->groupBy(function ($elem) {return $elem[0] < $elem[1] ? 'lt' : 'ge';});
+        $result2 = [
+            'lt' => ['x' => [17, 54], 'z' => [1, 45]],
+            'ge' => ['y' => [42, -4]]
+        ];
+        $this->assertEquals($result2, $groupBy2->toArray());
+    }
+
     public function testOffsetExists()
     {
         $this->assertTrue(isset($this->object[3]));
