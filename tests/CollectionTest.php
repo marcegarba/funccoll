@@ -222,7 +222,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function testGroupBy()
     {
         $groupBy1 = $this->object->groupBy(function ($elem) {return $elem % 2 == 0 ? 'even' : 'odd';});
-        $this->assertNotSame($this->object, $group1);
+        $this->assertNotSame($this->object, $groupBy1);
         $result1 = [
             'even' => [1 => 2, 3=> 4, 5=> 6],
             'odd' => [0 => 1, 2 => 3, 4 => 5]
