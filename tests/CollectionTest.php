@@ -133,28 +133,98 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function testTakeWhileWithZeroElements()
+    public function testTakeWhileFalse()
     {
         $fun = function () {
             return false;
         };
-        $this->assertCount(0, $this->object->takeWhile($fun)->toArray());
+        $col = $this->object->takeWhile($fun);
+        $this->assertNotSame($this->object, $col);
+        $this->assertCount(0, $col);
     }
 
-    public function testTakeWhileWithSomeElements()
+    public function testTakeWhileSome()
     {
+        $obj = Collection::fromArray([3, 6, -3, 0, 4]);
         $fun = function ($elem) {
-            return $elem < 4;
+            return $elem < 5;
         };
-        $this->assertCount(3, $this->object->takeWhile($fun)->toArray());
+        $col = $obj->takeWhile($fun);
+        $this->assertNotSame($obj, $col);
+        $this->assertCount(1, $col);
     }
 
-    public function testTakeWhileWithAllElements()
+    public function testTakeWhileTrue()
     {
         $fun = function () {
             return true;
         };
-        $this->assertCount(6, $this->object->takeWhile($fun)->toArray());
+        $col = $this->object->takeWhile($fun);
+        $this->assertNotSame($this->object, $col);
+        $this->assertCount(count($this->object), $col);
+    }
+
+    public function testDropWithPositiveArgument()
+    {
+        $col = $this->object->drop(2);
+        $this->assertNotSame($this->object, $col);
+        $newCount= count($this->source) - 2;
+        $this->assertCount($newCount, $col);
+        for ($i = 0; $i < $newCount; $i++) {
+            $this->assertEquals($this->source[$i + 2], $col[$i]);
+        }
+    }
+
+    public function testDropWithZeroArgument()
+    {
+        $col = $this->object->drop(0);
+        $this->assertNotSame($this->object, $col);
+        $this->assertEquals(count($this->object), count($col));
+    }
+
+    public function testDropWithNegativeArgument()
+    {
+        $col = $this->object->drop(-2);
+        $this->assertNotSame($this->object, $col);
+        $newCount= 2;
+        $this->assertCount($newCount, $col);
+        for ($i = 0; $i < $newCount; $i++) {
+            $offset = count($this->object) - 2;
+            $this->assertEquals($this->source[$i + $offset], $col[$i]);
+        }
+    }
+
+    public function testDropWhileFalse()
+    {
+        $obj = Collection::fromArray(['d', 'c', 'a', 'b']);
+        $fun = function () {
+            return false;
+        };
+        $col = $obj->dropWhile($fun);
+        $this->assertNotSame($obj, $col);
+        $this->assertEquals(count($obj), count($col));
+    }
+
+    public function testDropWhileSome()
+    {
+        $obj = Collection::fromArray(['alpha', 'beta', 'gamma', 'phi']);
+        $fun = function ($elem) {
+            return strlen($elem) > 4;
+        };
+        $col = $obj->dropWhile($fun);
+        $this->assertNotSame($obj, $col);
+        $this->assertCount(3, $col);
+    }
+
+    public function testDropWhileTrue()
+    {
+        $obj = Collection::fromArray([18, 3, 45, 5, 4]);
+        $fun = function () {
+            return true;
+        };
+        $col = $obj->dropWhile($fun);
+        $this->assertNotSame($obj, $col);
+        $this->assertCount(0, $col);
     }
 
     public function testFlatten()

@@ -19,7 +19,7 @@ Just add this dependency to your `composer.json`:
 ```json
 {
     "require": {
-        "marcegarba/funccoll": "dev-master"
+        "marcegarba/funccoll": "@stable"
     }
 }
 ```
@@ -105,20 +105,22 @@ $items =
 
 These are the main instance methods, sorted alphabetically:
 
-|Method       |Meaning                                                |
-|-------------|-------------------------------------------------------|
-|`count()`    |Returns a count of all elements in the collection      |
-|`each()`     |Executes a closure for each element                    |
-|`filter()`   |Filters a collection                                   |
-|`findFirst()`|Returns the first element that matches a condition     |
-|`flatten()`  |Creates a new collection containing a flattened list   |
-|`groupBy()`  |Groups elements according to a closure                 |
-|`head()`     |Returns the first element                              |
-|`map()`      |Creates a new collection with elements mapped          |
-|`reduce()`   |Reduces a collection to a single value                 |
-|`sort()`     |Creates a sorted collection applying a closure         |
-|`tail()`     |Creates a collection with all but the first element    |
-|`take()`     |Creates a collection with the first _n_ elements       |
-|`takeWhile()`|Creates a collection with the first evaluated elements |
-|`toArray()`  |Returns copy of the Collection's inner array           |
-|`values()`   |Creates a new collection with the keys wiped           |
+|Method       |Meaning                                                    |
+|-------------|-----------------------------------------------------------|
+|`count()`    |Returns a count of all elements in the collection          |
+|`drop()`     |Creates a collection dropping the first _n_ elements       |
+|`dropWhile()`|Creates a collection dropping the first evaluated elements |
+|`each()`     |Executes a closure for each element                        |
+|`filter()`   |Filters a collection                                       |
+|`findFirst()`|Returns the first element that matches a condition         |
+|`flatten()`  |Creates a new collection containing a flattened list       |
+|`groupBy()`  |Groups elements according to a closure                     |
+|`head()`     |Returns the first element                                  |
+|`map()`      |Creates a new collection with elements mapped              |
+|`reduce()`   |Reduces a collection to a single value                     |
+|`sort()`     |Creates a sorted collection applying a closure             |
+|`tail()`     |Creates a collection with all but the first element        |
+|`take()`     |Creates a collection with the first _n_ elements           |
+|`takeWhile()`|Creates a collection with the first evaluated elements     |
+|`toArray()`  |Returns copy of the Collection's inner array               |
+|`values()`   |Creates a new collection with the keys wiped               |

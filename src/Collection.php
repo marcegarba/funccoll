@@ -204,16 +204,14 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
-     * Evaluates each element of the collection, and returns all the elements
-     * from the beginning, until the first closure evaluation returns
-     * <code>false</code>.
+     * Generates a new collection with the first elements of this one, until
+     * the evaluation of a closure returns <code>false</code>.
      *
      * @param  Closure    $callback   a one-parameter closure which should
      *                                return a boolean
      * @return Collection  a new collection with the first elements
      *                     from this collection where evaluating the
      *                     closure returns <code>true</code>
-     *
      */
     public function takeWhile(Closure $callback)
     {
@@ -223,6 +221,51 @@ class Collection implements ArrayAccess, Countable
                 $dest[$key] = $elem;
             } else {
                 break;
+            }
+        }
+
+        return new Collection($dest);
+    }
+
+    /**
+     * Generates a new collection dropping the first <i>$length</i>
+     * elements (if <i>$length</i> is positive or zero), or
+     * the the last (abs(<i>$length</i>)), if negative.
+     * <p>
+     * This uses the <code>array_slice()</code> PHP built-in function.
+     * </p>
+     *
+     * @param  int        $length the number of elements to drop
+     * @return Collection
+     */
+    public function drop($length)
+    {
+        $dest = array_slice($this->arr, (int) $length);
+
+        return new Collection($dest);
+    }
+
+    /**
+     * Generates a new collection with all but the first elements from this one
+     * dropped, until the closure which evaluates them returns
+     * <code>false</code>.
+     *
+     * @param  Closure    $callback   a one-parameter closure which should
+     *                                return a boolean
+     * @return Collection  a new collection with the first elements
+     *                     from this collection dropped, until their evaluation
+     *                     by <i>$callback</i> returns <code>false</code>
+     */
+    public function dropWhile(Closure $callback)
+    {
+        $dest = [];
+        $exhausted = false;
+        foreach($this->arr as $key => $elem) {
+            if (!$exhausted && $callback($elem)) {
+                continue;
+            } else {
+                $exhausted = true;
+                $dest[$key] = $elem;
             }
         }
 
