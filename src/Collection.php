@@ -204,6 +204,32 @@ class Collection implements ArrayAccess, Countable
     }
 
     /**
+     * Evaluates each element of the collection, and returns all the elements
+     * from the beginning, until the first closure evaluation returns
+     * <code>false</code>.
+     *
+     * @param  Closure    $callback   a one-parameter closure which should
+     *                                return a boolean
+     * @return Collection  a new collection with the first elements
+     *                     from this collection where evaluating the
+     *                     closure returns <code>true</code>
+     *
+     */
+    public function takeWhile(Closure $callback)
+    {
+        $dest = [];
+        foreach($this->arr as $key => $elem) {
+            if ($callback($elem)) {
+                $dest[$key] = $elem;
+            } else {
+                break;
+            }
+        }
+
+        return new Collection($dest);
+    }
+
+    /**
      * Generates a new collection with a flattened list of elements.
      * <p>
      * This uses the <code>array_walk_recursive()</code> PHP built-in

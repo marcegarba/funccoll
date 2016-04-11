@@ -133,6 +133,30 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testTakeWhileWithZeroElements()
+    {
+        $fun = function () {
+            return false;
+        };
+        $this->assertCount(0, $this->object->takeWhile($fun)->toArray());
+    }
+
+    public function testTakeWhileWithSomeElements()
+    {
+        $fun = function ($elem) {
+            return $elem < 4;
+        };
+        $this->assertCount(3, $this->object->takeWhile($fun)->toArray());
+    }
+
+    public function testTakeWhileWithAllElements()
+    {
+        $fun = function () {
+            return true;
+        };
+        $this->assertCount(6, $this->object->takeWhile($fun)->toArray());
+    }
+
     public function testFlatten()
     {
         $source = [
