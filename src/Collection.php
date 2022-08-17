@@ -47,7 +47,7 @@ class Collection implements ArrayAccess, Countable
     /**
      * The actual array holding the collection values.
      *
-     * @var arraty
+     * @var array
      */
     private $arr;
 
@@ -179,6 +179,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->arr);
@@ -442,6 +443,7 @@ class Collection implements ArrayAccess, Countable
         $this->arr = $arr;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->arr[$offset]);
@@ -458,11 +460,13 @@ class Collection implements ArrayAccess, Countable
         return $result;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         throw new LogicException('Collection object is immutable');
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         throw new LogicException('Collection object is immutable');
