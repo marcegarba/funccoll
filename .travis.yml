@@ -6,6 +6,7 @@ php:
   - "5.6"
   - "7.0"
   - "7.2"
+  - "7.4"
   - hhvm
 
 matrix:
@@ -20,4 +21,4 @@ script:
   - vendor/bin/phpunit
 
 after_script:
-  - vendor/bin/coveralls -v
+  - vendor/bin/php-coveralls -v
